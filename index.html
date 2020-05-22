@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!-- Compiled and minified CSS -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+       <link rel="stylesheet" href="style.css">
+    <title>Task Manager</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s4 m4 l4">
+                <h1> Task List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m8 l8">
+                <label for="task">New Task</label>
+                <input type="text" name="task" id="taskInput">
+            </div>
+            <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 l8">
+                <h2>Incomplete Tasks</h2>
+                <div class="card">
+
+                    <ul class="collection incomplete">
+    
+                    </ul>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m8 l8">
+                    <h2>Completed Tasks</h2>
+                    <div class="card">
+    
+                        <ul class="collection complete">
+        
+                        </ul>
+    
+                    </div>
+                </div>
+        </div>
+      
+    </div>
+ 
+     
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="app.js"></script>
+                
+</body>
+</html>
