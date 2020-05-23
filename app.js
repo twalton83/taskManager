@@ -16,15 +16,12 @@ class TaskUI {
         taskListCollection.appendChild(newTask)
     }
     moveCompletedTask(task){
-
-        console.log(task)
         const tasks = Store.getTasks();
         tasks.forEach((storedTask) =>{
             if(storedTask.text === task){
                 const completedTaskCollection = document.querySelector('.collection.complete')
                 const newCompletedTask = document.createElement('li');
                 newCompletedTask.innerHTML = `<p class= "task">${storedTask.text}</p><i class = "checkbox material-icons small">check_box_outline_filled</i>`;
-                console.log(newCompletedTask)
                 completedTaskCollection.append(newCompletedTask)
             }
         })
@@ -35,7 +32,6 @@ class TaskUI {
         const completedTaskCollection = document.querySelector('.collection.complete')
         const newCompletedTask = document.createElement('li');
         newCompletedTask.innerHTML = `<p class= "task">${task.text}</p><i class = "checkbox material-icons small">check_box_outline_filled</i>`;
-        console.log(newCompletedTask)
         completedTaskCollection.append(newCompletedTask)
     }
 
@@ -107,7 +103,6 @@ const addTask = () =>{
         return
     } else{
         const task = new Task(text)
-
         const ui = new TaskUI();
         task.completion = false;
         ui.addTaskToList(task)
