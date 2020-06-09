@@ -6,6 +6,7 @@ const app = express();
 const passport = require('passport');
 const localStrategy = require("passport-local");
 const mongoose = require('mongoose')
+const ejsLint = require('ejs-lint');
 //const middleware = require('/middleware/index.js')
 
 const url = process.env.DATABASEURL || "mongodb://localhost/taskManager";
@@ -45,18 +46,37 @@ app.get('/', function(req, res) {
 });
 
 app.post('/addTask', (req, res) =>{
+    let title = req.body.taskText;
+    let completionStatus = false;
+    let dueDate = undefined;
+    let dateCreated = new Date();
+    let author = req.user._id;
     let newTask = {
-        title : req.body.title,
-        completionStatus : false,
-        dueDate : undefined,
-        dateCreated : new Date(),
-        author: req.user._id
+        title : title,
+        completionStatus : completionStatus,
+        dueDate : dueDate,
+        dateCreated : dateCreated,
+        author: author
     }
-    Task.create(newTask, (err, newlyCreatedTask)=>{
-        err ? console.log(err)  : console.log(newlyCreatedTask)
-    })
+    User.findById(req.user._id, (err, user)=>{
+        if(err){
+            console.log(err)
+        } else {
+        Task.create(newTask, (err, newlyCreatedTask)=>{
+            if(err){
+            console.log(err) 
+            } else {
+                newlyCreatedTask.author.id = req.user._id;
+                user.tasks.push(newlyCreatedTask)
+                newlyCreatedTask.save();
+                user.save()
+                console.log(user.tasks)
+                res.redirect("/")
+            }
+        })
+    }
 
-    
+})
   
     
 })
