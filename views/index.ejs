@@ -28,10 +28,13 @@
     <div class="container">
         <div class="row">
             <div class="input-field col s12 m8 l8">
+                <form method="POST" action="/addTask">
                 <label for="task">New Task</label>
-                <input type="text" name="task" id="taskInput" formmethod="POST" formaction="/">
+                <input type="text" name="task" id="taskInput">
+            
             </div>
-            <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></button>
+        </form>
         </div>
         <div class="row">
             <div class="col s12 m8 l8">
@@ -39,7 +42,15 @@
                 <div class="card">
 
                     <ul class="collection incomplete">
-    
+                        <% if(currentUser) {  const tasks = currentUser.tasks %>
+                        <% tasks.forEach((task)=>{ %>
+                          <%  if(task.completion === false && task.author.id.equals(currentUser._id)) { %>
+                            <li>
+                            <p class= "task"><%= task.text %></p><i class = "checkbox material-icons small">check_box_outline_blank</i>
+                        </li>
+                           <% } %>
+                       <% }) %>
+                    <% } %>
                     </ul>
 
                 </div>
@@ -50,7 +61,16 @@
                     <div class="card">
     
                         <ul class="collection complete">
-        
+                            <% if(currentUser){ %>
+                                <% let tasks = currentUser.tasks %>
+                                <% tasks.forEach((task)=>{ %>
+                                  <%  if(task.completion === false && task.author.id.equals(currentUser._id)) { %>
+                                    <li>
+                                    <p class= "task"><%= task.text %></p><i class = "checkbox material-icons small">check_box_outline_blank</i>
+                                </li>
+                                   <% } %>
+                               <% }) %>
+                            <% } %>
                         </ul>
     
                     </div>

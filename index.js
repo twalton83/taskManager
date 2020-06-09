@@ -32,6 +32,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req,res, next){
     //anything in res.locals is passed to all templates
     res.locals.currentUser= req.user;
+  
     next();
 })
 
@@ -43,11 +44,21 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.post('/', (req, res) =>{
-    let title = req.body.title; 
-    let completionStatus = false;
-    let dueDate = undefined;
-    let dateCreated = new Date();
+app.post('/addTask', (req, res) =>{
+    let newTask = {
+        title : req.body.title,
+        completionStatus : false,
+        dueDate : undefined,
+        dateCreated : new Date(),
+        author: req.user._id
+    }
+    Task.create(newTask, (err, newlyCreatedTask)=>{
+        err ? console.log(err)  : console.log(newlyCreatedTask)
+    })
+
+    
+  
+    
 })
 
 
