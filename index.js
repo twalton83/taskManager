@@ -10,12 +10,11 @@ const mongoose = require('mongoose')
 //const middleware = require('/middleware/index.js')
 
 const uri = process.env.DATABASEURL || "mongodb://localhost/taskManager";
-mongoose.connect(uri, { useNewUrlParser: true })
-        .connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+mongoose.connect(uri,
+{ useNewUrlParser: true, useUnifiedTopology: true }, () => { })
+        .catch(err => console.log(err));
+
+        
 app.set('view engine', "ejs");
 app.use(express.static(__dirname + '/public'));
 
