@@ -10,8 +10,8 @@ const mongoose = require('mongoose')
 //const middleware = require('/middleware/index.js')
 
 const url = process.env.DATABASEURL || "mongodb://localhost/taskManager";
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
-
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, () => { })
+        .catch(err => console.log(err));
 
 app.set('view engine', "ejs");
 app.use(express.static(__dirname + '/public'));
