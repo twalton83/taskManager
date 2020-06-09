@@ -9,10 +9,13 @@ const mongoose = require('mongoose')
 
 //const middleware = require('/middleware/index.js')
 
-const url = process.env.DATABASEURL || "mongodb://localhost/taskManager";
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, () => { })
-        .catch(err => console.log(err));
-
+const uri = process.env.DATABASEURL || "mongodb://localhost/taskManager";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 app.set('view engine', "ejs");
 app.use(express.static(__dirname + '/public'));
 
@@ -90,6 +93,7 @@ app.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect:"/login"
 }), function(req, res){
+    return res.redirect('/')
 });
 
 app.get('/register', (req, res) =>{
