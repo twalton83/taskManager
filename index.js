@@ -105,7 +105,7 @@ app.post('/register', (req, res) => {
             return res.redirect('/')
         }
         passport.authenticate('local')(req, res, () =>{
-            res.redirect('/')
+            return res.redirect('/')
         })
     }) 
 })
