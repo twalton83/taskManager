@@ -6,7 +6,7 @@ const app = express();
 const passport = require('passport');
 const localStrategy = require("passport-local");
 const mongoose = require('mongoose')
-const ejsLint = require('ejs-lint');
+
 //const middleware = require('/middleware/index.js')
 
 const url = process.env.DATABASEURL || "mongodb://localhost/taskManager";
