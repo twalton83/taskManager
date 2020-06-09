@@ -10,8 +10,8 @@ const mongoose = require('mongoose')
 //const middleware = require('/middleware/index.js')
 
 const uri = process.env.DATABASEURL || "mongodb://localhost/taskManager";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
+mongoose.connect(uri, { useNewUrlParser: true })
+        .connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
   client.close();
