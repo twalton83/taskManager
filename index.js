@@ -114,7 +114,6 @@ app.get('/logout', (req, res) =>{
     req.logout()
     res.redirect('/')
 }) 
-app.listen(5500, () => {
-    console.log('Server is running at port 5500');
+app.listen(process.env.PORT, process.env.IP, () => {
+    console.log("Server is live.")
 })
-
