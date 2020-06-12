@@ -14,8 +14,8 @@ const completeTask = (e) =>{
     })
     .then((res) =>{
         console.log(res)
-        if (res.status === 301 || res.status === 302){
-            window.location = res.headers.location
+        if (res.status === 200){
+            window.location = res.url
         }
     })
 }
