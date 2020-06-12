@@ -1,1 +1,0 @@
-// use fetch to send a POST to the backend route of /completetask

@@ -1,18 +1,19 @@
 <%- include ("./partials/header.ejs") %>
 
-    <div class="container">
+    <div class="container valign-wrapper">
         <div class="row">
-            <div class="card">
-                <span class="card-title">
-                    Register
-                </span>
-                <div class="card-content">
+            <div class="card ">
+                
+                <div class="card-content ">
+                    <span class="card-title">
+                        Register
+                    </span>
                     <form action = "/register" method="POST">
                     <label for="username">Username</label>
                     <input type="text" name="username">
                     <label for= "password">Password</label>
                     <input type="password" name="password">
-                    <input type = "submit">
+                    <input class="btn login" type = "submit">
                     </form>
                 </div>
             </div>

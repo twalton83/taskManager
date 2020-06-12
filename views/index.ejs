@@ -1,58 +1,19 @@
 <%- include ("./partials/header.ejs") %>
 
-    <div class="container">
-        <div class="row">
-            <div class="input-field col s12 m8 l8">
-                <form method="POST" action="/addTask">
-                <label for="task">New Task</label>
-                <input type="text" name="taskText" id="taskInput">
-            
-            </div>
-            <button class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></button>
-        </form>
-        </div>
-        <div class="row">
-            <div class="col s12 m8 l8">
-                <h2>Incomplete Tasks</h2>
-                <div class="card">
+    <div class="homepage">
+        <div class="homepageText">
+        <h1>
+        Task.Me  
+        </h1>
+        <h2>
+            A better way to manage your tasks on the go.
+        </h2>
+        <a class="btn-large waves" href="/register">Sign Up</a>
+    </div>
 
-                    <ul class="collection incomplete">
-                        <% if(currentUser) {const tasks = currentUser.tasks %>
-                        <% console.log(tasks) %>
-                         <% tasks.forEach((task)=>{ %>
-                          <%  if(task.completionStatus === false){ console.log(task.title) }%>
-                            <li>
-                            <p class= "task"><%= task.title%></p> <i class = "checkbox material-icons small">check_box_outline_blank</i>
-                        </li>
-                       <% }) %>
-                    <% } %>
-                    </ul>
+        <img class="homepageSvg" src = "/assets/undraw_tasks_av87.svg">
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m8 l8">
-                    <h2>Completed Tasks</h2>
-                    <div class="card">
-    
-                        <ul class="collection complete">
-                            <% if(currentUser){ %>
-                                <% let tasks = currentUser.tasks %>
-                                <% tasks.forEach((task) => { %>
-                                  <%  if(task.completionStatus === true && task.author.id.equals(currentUser._id)) { %>
-                                    <li>
-                                    <p class= "task"><%= task.text %></p><i class = "checkbox material-icons small">check_box_outline_blank</i>
-                                </li>
-                                   <% } %>
-                               <% }) %>
-                            <% }  %>
-                             
-                        </ul>
-    
-                    </div>
-                </div>
-        </div>
-      
+
     </div>
  
      
