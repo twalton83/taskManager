@@ -13,7 +13,7 @@ const logoutRoutes = require('./routes/logout')
 const taskRoutes = require('./routes/tasks')
 
 //remove when pushing to heroku
-require('dotenv').config()
+//require('dotenv').config()
 //const middleware = require('/middleware/index.js')
 
 const PORT = process.env.PORT || 5500
