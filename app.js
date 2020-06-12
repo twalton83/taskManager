@@ -11,6 +11,7 @@ const loginRoutes = require('./routes/login')
 const registerRoutes = require('./routes/register')
 const logoutRoutes = require('./routes/logout')
 const taskRoutes = require('./routes/tasks')
+const secret = require('./config.json').secret
 
 //const middleware = require('/middleware/index.js')
 
@@ -25,7 +26,7 @@ app.set('view engine', "ejs");
 app.use(express.static(__dirname + '/public'));
 
 app.use(require('express-session')({
-    secret: "hello",
+    secret: secret,
     resave: false,
     saveUninitialized: false
 }));

@@ -20,7 +20,7 @@
                         <% if(currentUser) { %>
                             <% console.log(currentUser) %> 
                             <% const tasks = currentUser.tasks%>
-                            <% tasks.forEach((task)=>{ console.log(task.title, "-", task.completionStatus) %>
+                            <% tasks.forEach((task)=>{ %>
                             <%  if(task.completionStatus === false){  %>
                                 <li>
                                 <p class= "task"><%= task.title%></p> <i class = "checkbox material-icons small">check_box_outline_blank</i>
