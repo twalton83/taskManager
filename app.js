@@ -11,8 +11,7 @@ const loginRoutes = require('./routes/login')
 const registerRoutes = require('./routes/register')
 const logoutRoutes = require('./routes/logout')
 const taskRoutes = require('./routes/tasks')
-const secret = process.env.secret
-
+require('dotenv').config()
 //const middleware = require('/middleware/index.js')
 
 const PORT = process.env.PORT || 5500
@@ -26,7 +25,7 @@ app.set('view engine', "ejs");
 app.use(express.static(__dirname + '/public'));
 
 app.use(require('express-session')({
-    secret: secret,
+    secret: process.env.secret,
     resave: false,
     saveUninitialized: false
 }));

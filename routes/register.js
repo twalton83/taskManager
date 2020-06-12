@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
             return res.redirect('/')
         }
         passport.authenticate('local')(req, res, () =>{
-            return res.redirect('/')
+            return res.redirect('/tasks')
         })
     })
 })
