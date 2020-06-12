@@ -11,7 +11,7 @@ const loginRoutes = require('./routes/login')
 const registerRoutes = require('./routes/register')
 const logoutRoutes = require('./routes/logout')
 const taskRoutes = require('./routes/tasks')
-const secret = require('./config.json').secret || process.env.secret
+const secret = process.env.secret
 
 //const middleware = require('/middleware/index.js')
 
