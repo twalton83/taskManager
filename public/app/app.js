@@ -1,3 +1,4 @@
+
 let incompleteBoxes = document.querySelectorAll('.checkbox.material-icons.small')
 
 const completeTask = (e) =>{
@@ -23,5 +24,6 @@ const completeTask = (e) =>{
 incompleteBoxes.forEach((element) =>{
     element.addEventListener('click', completeTask)
 })
+
 
 
