@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="input-field col s12 m8 l8">
-                <form method="POST" action="/task/new">
+                <form method="POST" action="/tasks">
                 <label for="task">New Task</label>
                 <input type="text" name="taskText" id="taskInput">
             
@@ -18,8 +18,9 @@
 
                     <ul class="collection incomplete">
                         <% if(currentUser) { %>
-                            <% const tasks = currentUser.tasks %>
-                            <% tasks.forEach((task)=>{ %>
+                            <% console.log(currentUser) %> 
+                            <% const tasks = currentUser.tasks%>
+                            <% tasks.forEach((task)=>{ console.log(task.title, "-", task.completionStatus) %>
                             <%  if(task.completionStatus === false){  %>
                                 <li>
                                 <p class= "task"><%= task.title%></p> <i class = "checkbox material-icons small">check_box_outline_blank</i>
@@ -42,7 +43,7 @@
                                 <% tasks.forEach((task) => { %>
                                   <%  if(task.completionStatus === true && task.author.id.equals(currentUser._id)) { %>
                                     <li>
-                                    <p class= "task"><%= task.text %></p><i class = "checkbox material-icons small">check_box_outline_blank</i>
+                                    <p class= "task"><%= task.title %></p><i class = "checkbox material-icons small">check_box</i>
                                 </li>
                                    <% } %>
                                <% }) %>
@@ -56,6 +57,6 @@
       
     </div>
  
-     
+     <script src="/app/app.js"></script>
     <%- include ("./partials/footer.ejs") %>  
    

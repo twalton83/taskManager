@@ -44,11 +44,15 @@ li{
 }
 
 .homepageText{
-    padding: 1rem;
+    padding-left: 2rem;
     height: 100%;
     width: 100%;
-   
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
     position: relative;
+    text-align: left;
    /* animation: slide .8s forwards;
     left: -500px;
     animation-delay: .2s */
@@ -59,9 +63,10 @@ li{
     color: #3f51b5;
     font-weight: 400;
 }
-.homepageText h2{
+.homepageText p{
     font-size: 1.3rem;
-    text-align: left
+    text-align: left;
+    width: 40vw
 }
 
 .homepage {
@@ -75,11 +80,6 @@ li{
 .homepageSvg{
     height: 60vh;
     margin-right: 1rem;
-}
-
-.homepageText{
-    text-align: left;
-    
 }
 
 .btn.login {

@@ -2,12 +2,14 @@ const express= require('express');
 const router = express.Router();
 const Task = require('../models/tasks.js');
 const User = require('../models/users.js')
+let bodyParser = require('body-parser');
+router.use(bodyParser.json());
 
 router.get("/", function(req,res){
-    res.render("index.ejs")
+    res.render("showTasks.ejs")
 });
 
-router.post('/new', (req, res) =>{
+router.post('/', (req, res) =>{
     let title = req.body.taskText;
     let description = ''
     let completionStatus = false;
@@ -34,16 +36,29 @@ router.post('/new', (req, res) =>{
                 user.tasks.push(newlyCreatedTask)
                 newlyCreatedTask.save();
                 user.save()
-                res.redirect("/")
+                res.redirect("/tasks")
             }
         })
     }
 
 })
-  
     
 })
 
+
+router.post('/completeTask', async (req, res) =>{
+    console.log('clicked')
+    let filter = req.body;
+    const task = await Task.findOne(filter)
+    console.log(task)
+    let taskId = task._id;
+    let authorId = task.author.id
+    console.log(authorId , " - authorId")
+    const user = await User.findById(authorId)
+    user.tasks.id(taskId).completionStatus = true
+    user.save()
+    res.redirect("/tasks")
+})
 
 
 module.exports = router

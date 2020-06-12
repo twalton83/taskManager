@@ -48,7 +48,7 @@ app.use(indexRoutes)
 app.use("/register", registerRoutes)
 app.use("/login", loginRoutes)
 app.use("/logout", logoutRoutes)
-app.use("/task", taskRoutes)
+app.use("/tasks", taskRoutes)
 
 
 

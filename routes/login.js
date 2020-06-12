@@ -9,10 +9,10 @@ router.get('/', (req, res) =>{
 })
 
 router.post("/", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/tasks",
     failureRedirect:"/login"
 }), function(req, res){
-    return res.redirect('/')
+    return res.redirect('/tasks')
 });
 
 module.exports = router
