@@ -47,13 +47,10 @@ router.post('/', (req, res) =>{
 
 
 router.post('/completeTask', async (req, res) =>{
-    console.log('clicked')
     let filter = req.body;
     const task = await Task.findOne(filter)
-    console.log(task)
     let taskId = task._id;
     let authorId = task.author.id
-    console.log(authorId , " - authorId")
     const user = await User.findById(authorId)
     user.tasks.id(taskId).completionStatus = true
     user.save()
