@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const taskSchema = new mongoose.Schema({
     title: String, 
-    completionStatus: Boolean,
+    completionStatus: {type : Boolean, default: false},
     dueDate : {type: Date, default: undefined},
     dateCreated: {type: Date, default: new Date()},
     author:{

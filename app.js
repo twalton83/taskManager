@@ -11,10 +11,11 @@ const loginRoutes = require('./routes/login')
 const registerRoutes = require('./routes/register')
 const logoutRoutes = require('./routes/logout')
 const taskRoutes = require('./routes/tasks')
-
+const dotenv = require('dotenv')
 //remove when pushing to heroku
-//require('dotenv').config()
+//const env = dotenv.config()
 //const middleware = require('/middleware/index.js')
+
 
 const PORT = process.env.PORT || 5500
 const uri = process.env.DATABASEURL || "mongodb://localhost/taskManager";
@@ -31,6 +32,8 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
+
 
 //this is necessary to parse POSTS
 app.use(bodyParser.urlencoded({extended: true}));
@@ -62,3 +65,5 @@ app.listen(PORT, process.env.IP, () => {
     console.log("Server is live.")
 })
 
+
+//module.exports = app

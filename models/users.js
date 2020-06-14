@@ -4,9 +4,8 @@ const Task = require('./tasks.js')
 const TaskSchema = mongoose.model('Task').schema;
 const Schema = mongoose.Schema
 const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
-    DOB: String,
+    username: {type: String, required: true},
+    password: {type: String, required: true},
     tasks : {type: [TaskSchema], default: []}
 })
 
