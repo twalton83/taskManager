@@ -11,7 +11,7 @@ const loginRoutes = require('./routes/login')
 const registerRoutes = require('./routes/register')
 const logoutRoutes = require('./routes/logout')
 const taskRoutes = require('./routes/tasks')
-const dotenv = require('dotenv')
+//const dotenv = require('dotenv')
 //remove when pushing to heroku
 //const env = dotenv.config()
 //const middleware = require('/middleware/index.js')
