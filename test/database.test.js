@@ -22,8 +22,8 @@ after(async () => {
 
 
 
-describe('Users', () => {
-  it('add user to database', async()=>{
+describe('============== Users ============== ', () => {
+  xit('add user to database', async()=>{
       User.create({username: "Tatiana", password: "hello"}, (err, user) => {
         if (err){
           console.log(err)
@@ -41,18 +41,15 @@ describe('Users', () => {
       const cnt = await User.countDocuments();
         expect(cnt).to.equal(2);
   })
-  it('Dont save incorrect format to database', async (done)=> {
-  
-    let wrongSave = new User({notName: 'Not Mike'});
-    function wrong(){
-    wrongSave.save(err => {
-      if(err) {throw new Error('This is the wrong type!');}
+  xit('Dont save incorrect format to database', function(done) {
+    var wrongSave = User({
+      notName: 'Not Mike'
     });
-  }
-  return wrongSave().should.eventually.be.rejected;
-
+    wrongSave.save(err => {
+      if(err) { return done();}
+      throw new Error('Should generate error!');
+    });
   });
-
   xit('Should retrieve data from test database', async()=> {
   User.findOne({username: 'Tatiana'}, (err, user) => {
       if(err) {throw err;}
@@ -62,38 +59,50 @@ describe('Users', () => {
       }
     });
   });
-
   xit('Should add task to user', async () =>{
-    const user = User.findOne({username: 'Tatiana'}, (err, user) => {
+    User.findOne({username: 'Tatiana'}, (err, user) => {
       if(err) {throw err;}
       if(user){
-        console.log(user)
-        return user
+        const newTask = new Task({title: "A Test Task", description: "This is a description"})
+        const newTask2 = new Task({title: "A Test Task 2", description: "This is a description"})
+        newTask.author.id = user._id;
+        newTask2.author.id = user._id;
+        user.tasks.push(newTask)
+        user.tasks.push(newTask2)
+        user.save()
+      expect(user.tasks.length).to.equal(2)
       }
     });
-      console.log(user, "- user")
-      const newTask = new Task({title: "A Test Task", description: "This is a description"})
-      newTask.author.id = user._id;
-      user.tasks.push(task)
-      user.save()
-      expect(user.tasks.length).to.equal(1)
   })
-  xit('task should persist', async() => {
-    User.findOne({name: 'Tatiana'}, (err, user) => {
-      if(err) {throw err;}
-      if(User.length === 0) {throw new Error('No data!');}
-      const tasks = user.tasks
-      expect(tasks.length).to.equal(1)
+  xit('task should persist', async () => {
+    User.findOne({username: 'Tatiana'}, (err, user) => {
+      if(err) {done()}
+      if(user.tasks.length === 0) {throw new Error('No tasks!');}
+     console.log(user.tasks)
+      expect(user.tasks.length).to.equal(2)
     });
   })
 })
 
 
-describe('Tasks', ()=>{
-  xit('should create new tasks', ()=>{
+describe('============== Tasks ============== ', ()=>{
+  xit('should create new tasks', async ()=>{
     const newTask = new Task({title: "A Test Task", description: "This is a description"})
     console.log(newTask)
     newTask.save()
-    if(Task.length === 0) {throw new Error('No data!');}
+    if(Task.length === 0) {throw new Error('Task was not saved!');}
+  })
+  xit('should update description', async () =>{
+    Task.findOneAndUpdate({title: 'A Test Task'}, {description: "I made a better description."})
+    Task.findOne({title: 'A Test Task'}, (err, task) =>{
+      if(err){
+        done()
+      } else {
+        task.save()
+        console.log(task.description)
+        expect(task.description)
+      }
+
+    })
   })
 })
