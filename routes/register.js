@@ -13,7 +13,9 @@ router.post('/', (req, res) => {
     const newUser = new User({username: req.body.username})
     User.register(newUser, req.body.password, (err, user)=>{
         if(err){
+            res.send(err)
             return res.redirect('/')
+           
         }
         passport.authenticate('local')(req, res, () =>{
             return res.redirect('/tasks')
