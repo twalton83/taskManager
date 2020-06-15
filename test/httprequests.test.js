@@ -12,7 +12,7 @@ after(()=>{
 })
 
 describe('======= INDEX ROUTE =======', () => {
-    it('should get 200 status', (done) =>{
+    xit('should get 200 status', (done) =>{
         request
         .get('/')
         .end((err, res) => {
@@ -20,7 +20,7 @@ describe('======= INDEX ROUTE =======', () => {
             done();
         });
     });
-      it('Should not get 200', (done) =>{
+      xit('Should not get 200', (done) =>{
         request
         .get('/abc')
         .end((err, res) => {
@@ -33,7 +33,7 @@ describe('======= INDEX ROUTE =======', () => {
 
 
 describe('======= REGISTER ROUTES =======',()=>{
-  it('Register 200 status', (done) =>{
+  xit('Register 200 status', (done) =>{
     request
     .get('/register')
     .end((err, res) => {
@@ -41,7 +41,7 @@ describe('======= REGISTER ROUTES =======',()=>{
         done()
     });
   })
-  it('POST request for new user - 200 Status', (done) =>{
+  xit('POST request for new user - 200 Status', (done) =>{
     request
     .post('/register')
     .type('form')
@@ -55,7 +55,7 @@ describe('======= REGISTER ROUTES =======',()=>{
         done()
     });
   })
-  it('Throw Error', (done) =>{
+  xit('Throw Error', (done) =>{
     request
     .put('/register')
     .end((err, res) => {

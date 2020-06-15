@@ -9,7 +9,6 @@ router.get('/', (req, res) =>{
 })
 
 router.post('/', (req, res) => {
-    console.log(req.body)
     const newUser = new User({username: req.body.username})
     User.register(newUser, req.body.password, (err, user)=>{
         if(err){
