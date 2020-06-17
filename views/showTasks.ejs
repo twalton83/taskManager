@@ -18,12 +18,17 @@
 
                     <ul class="collection incomplete">
                         <% if(currentUser) { %>
-                            <% console.log(currentUser) %> 
                             <% const tasks = currentUser.tasks%>
                             <% tasks.forEach((task)=>{ %>
                             <%  if(task.completionStatus === false){  %>
                                 <li>
-                                <p class= "task"><%= task.title%></p> <i class = "checkbox material-icons small">check_box_outline_blank</i>
+                                <p class= "task" data-id="<%= task.id %>">
+                                    <%= task.title %>
+                                </p> 
+                                <div class="icons">
+                                    <i class = "delete material-icons small">clear</i> 
+                                    <i class = "incomplete checkbox material-icons small">check_box_outline_blank</i>
+                                </div>
                             </li>
                          <% }%> 
                        <% }) %>
@@ -43,7 +48,12 @@
                                 <% tasks.forEach((task) => { %>
                                   <%  if(task.completionStatus === true && task.author.id.equals(currentUser._id)) { %>
                                     <li>
-                                    <p class= "task"><%= task.title %></p><i class = "checkbox material-icons small">check_box</i>
+                                    <p class= "task" data-id = "<%= task._id%>">
+                                        <%= task.title %></p> 
+                                    <div class = "icons">
+                                    <i class = "delete material-icons small">clear</i> 
+                                    <i class = "complete checkbox material-icons small">check_box</i>
+                                </div>
                                 </li>
                                    <% } %>
                                <% }) %>

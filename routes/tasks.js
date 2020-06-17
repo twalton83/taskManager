@@ -47,9 +47,8 @@ router.post('/', (req, res) =>{
 
 
 router.post('/completeTask', async (req, res) =>{
-    let filter = req.body;
-    const task = await Task.findOne(filter)
-    let taskId = task._id;
+    let taskId = req.body.id;
+    const task = await Task.findById(taskId)
     let authorId = task.author.id
     const user = await User.findById(authorId)
     user.tasks.id(taskId).completionStatus = true
@@ -58,4 +57,28 @@ router.post('/completeTask', async (req, res) =>{
 })
 
 
+router.post('/incompleteTask', async (req, res) =>{
+    let taskId = req.body.id;
+    const task = await Task.findById(taskId)
+    let authorId = task.author.id
+    const user = await User.findById(authorId)
+    user.tasks.id(taskId).completionStatus = false
+    user.save()
+    res.redirect("/tasks")
+})
+
+
+router.delete('/:id', (req, res) =>{
+    Task.findById(req.params.id, async (err, task)=>{
+        if(err){
+            console.log(err)
+        } else{
+            const user = await User.findById(task.author.id)
+            user.tasks.id(req.params.id).remove()
+            user.save()
+            console.log(user.tasks)
+            res.status(204).send()
+        }
+    })
+})
 module.exports = router

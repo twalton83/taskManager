@@ -9,8 +9,11 @@ router.get('/', (req, res) =>{
 })
 
 router.post('/', (req, res) => {
-    const newUser = new User({username: req.body.username})
-    User.register(newUser, req.body.password, (err, user)=>{
+    const newUser = new User({
+        username: req.body.username
+    })
+
+    User.register(newUser,req.body.password, (err, user)=>{
         if(err){
             res.send(err)
             return res.redirect('/')
