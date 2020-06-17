@@ -36,7 +36,7 @@ router.post('/', (req, res) =>{
                 user.tasks.push(newlyCreatedTask)
                 newlyCreatedTask.save();
                 user.save()
-                res.redirect("/tasks")
+                return res.redirect("/tasks")
             }
         })
     }
@@ -48,9 +48,7 @@ router.post('/', (req, res) =>{
 
 router.post('/completeTask', async (req, res) =>{
     let taskId = req.body.id;
-    const task = await Task.findById(taskId)
-    let authorId = task.author.id
-    const user = await User.findById(authorId)
+    const user = await User.findById(req.user._id)
     user.tasks.id(taskId).completionStatus = true
     user.save()
     res.redirect("/tasks")
@@ -59,8 +57,7 @@ router.post('/completeTask', async (req, res) =>{
 
 router.post('/incompleteTask', async (req, res) =>{
     let taskId = req.body.id;
-    const task = await Task.findById(taskId)
-    let authorId = task.author.id
+    let authorId = req.author._id
     const user = await User.findById(authorId)
     user.tasks.id(taskId).completionStatus = false
     user.save()
@@ -68,17 +65,10 @@ router.post('/incompleteTask', async (req, res) =>{
 })
 
 
-router.delete('/:id', (req, res) =>{
-    Task.findById(req.params.id, async (err, task)=>{
-        if(err){
-            console.log(err)
-        } else{
-            const user = await User.findById(task.author.id)
-            user.tasks.id(req.params.id).remove()
-            user.save()
-            console.log(user.tasks)
-            res.status(204).send()
-        }
-    })
+router.delete('/:id', async (req, res) =>{
+    const user = await User.findById(req.user._id);
+    user.tasks.id(req.params.id).remove()
+    user.save()
+    res.redirect(303, 'back')
 })
 module.exports = router

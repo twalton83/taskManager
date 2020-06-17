@@ -67,9 +67,7 @@ const deleteTask = (e) =>{
         })
     })
     .then((res) =>{
-        if (res.status === 204){
-            console.log('task deleted')
-        }
+        window.location.href = '/tasks'
     })
 }
 
