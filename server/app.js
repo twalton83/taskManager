@@ -11,6 +11,9 @@ const loginRoutes = require('./routes/login')
 const registerRoutes = require('./routes/register')
 const logoutRoutes = require('./routes/logout')
 const taskRoutes = require('./routes/tasks')
+const cors = require('cors')
+
+
 
 if(process.env.NODE_ENV !== 'production'){
     const dotenv = require('dotenv')
@@ -27,8 +30,8 @@ mongoose.connect(uri,
 { useNewUrlParser: true, useUnifiedTopology: true }, () => { })
         .catch(err => console.log(err));
 
-        
-app.set('view engine', "ejs");
+    
+app.use(cors());
 app.use(express.static(__dirname + '/public'));
 
 app.use(require('express-session')({
@@ -36,6 +39,8 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
@@ -53,6 +58,7 @@ app.use("/register", registerRoutes)
 app.use("/login", loginRoutes)
 app.use("/logout", logoutRoutes)
 app.use("/tasks", taskRoutes)
+
 
 app.listen(PORT, process.env.IP, () => {
     console.log("Server is live.")
