@@ -1,6 +1,6 @@
 # TASK.ME #
 
-A MongoDB, Express, and NodeJS task manager, using passport local strategy for registration and log-ins. 
+A React, Express, MongoDB, and NodeJS task manager, using passport local strategy for registration and log-ins. 
 
 ## Features : ##
 
@@ -10,9 +10,11 @@ A MongoDB, Express, and NodeJS task manager, using passport local strategy for r
 
 - [ ] make due dates visible
 
-- [ ] add a description area.
-    - [ ] add a new task.ejs view to display more information for individual tasks
-    - [ ] potentially create modal for this, linked to _id of task
+- [ ] add projects, due dates, descriptions and priorities
+
+- [ ] make view for all projects
+
+- [ ] make sub view for tasks within projects
 
 
 ## Bugs : ##

@@ -1,5 +1,6 @@
 <%- include ("./partials/header.ejs") %>
 
+    <!--    New Tasks   -->
     <div class="container">
         <div class="row">
             <div class="input-field col s12 m8 l8">
@@ -12,6 +13,9 @@
         </form>
         </div>
         <div class="row">
+
+            <!--    Incomplete Tasks -->
+
             <div class="col s12 m8 l8">
                 <h2>Incomplete Tasks</h2>
                 <div class="card">
@@ -22,7 +26,7 @@
                             <% tasks.forEach((task)=>{ %>
                             <%  if(task.completionStatus === false){  %>
                                 <li>
-                                <p class= "task" data-id="<%= task.id %>">
+                                <p class= "incomplete task" data-id="<%= task.id %>">
                                     <%= task.title %>
                                 </p> 
                                 <div class="icons">
@@ -66,6 +70,8 @@
         </div>
       
     </div>
+
+
  
      <script src="/app/app.js"></script>
     <%- include ("./partials/footer.ejs") %>  
