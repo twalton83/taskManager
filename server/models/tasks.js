@@ -11,6 +11,7 @@ const taskSchema = new mongoose.Schema({
            ref : "User"
         }
     },
+    project: String,
     description: String
 })
 

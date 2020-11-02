@@ -4,25 +4,18 @@ const router = express.Router()
 const passport = require('passport');
 const User = require('../models/users.js')
 
-router.get('/', (req, res) =>{
-    res.render('register')
+router.get('/', (req, res)=>{
+    res.send('route hit')
 })
-
-router.post('/', (req, res) => {
-    const newUser = new User({
-        username: req.body.username
-    })
-
-    User.register(newUser,req.body.password, (err, user)=>{
-        if(err){
-            res.send(err)
-            return res.redirect('/')
-           
-        }
-        passport.authenticate('local')(req, res, () =>{
-            return res.redirect('/tasks')
-        })
-    })
-})
+router.post(
+    '/',
+    passport.authenticate('register', { session: false }),
+    async (req, res, next) => {
+      res.json({
+        message: 'Signup successful',
+        user: req.user
+      });
+    }
+  );
 
 module.exports = router

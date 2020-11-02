@@ -5,10 +5,16 @@ const User = require('../models/users.js')
 let bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
-router.get("/", async (req,res) => {
-    res.render("showTasks.ejs")
-});
-
+router.get(
+    '/',
+    (req, res, next) => {
+      res.json({
+        message: 'You made it to the secure route',
+        user: req.user,
+        token: req.query.secret_token
+      })
+    }
+  );
 router.post('/', async (req, res) =>{
     let title = req.body.taskText;
     let description = ''
