@@ -1,3 +1,5 @@
+## Note: This project is currently being overhauled at [this client side repo](https://github.com/twalton83/TaskMeClient).
+
 # TASK.ME #
 
 A MongoDB, Express, and NodeJS task manager, using passport local strategy for registration and log-ins. 
